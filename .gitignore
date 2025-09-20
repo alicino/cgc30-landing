@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+
+# Node tooling (se usar algum utilitário local)
+node_modules/
+.npm/
