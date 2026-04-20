@@ -249,53 +249,10 @@
       box-shadow: var(--shadow);
     }
 
-    .video-card {
-      padding: 22px;
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 20px;
-      align-items: stretch;
-    }
-
-    .video-frame {
-      position: relative;
-      overflow: hidden;
-      border-radius: 18px;
-      background: linear-gradient(135deg, rgba(202,162,43,.15), rgba(182,38,30,.14));
-      min-height: 260px;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 28px;
-    }
-
     .video-frame strong {
       font-size: 1.3rem;
       display: block;
       margin-bottom: 8px;
-    }
-
-    .video-side {
-      display: grid;
-      gap: 14px;
-      align-content: start;
-    }
-
-    .video-wrapper {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%; /* 16:9 */
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .video-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
     }
 
     .mini-card {
@@ -513,6 +470,79 @@
       font-size: .96rem;
     }
 
+    .video-card {
+      padding: 22px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .video-frame {
+      width: 100%;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+    }
+
+    .video-thumbnail {
+      all: unset;
+      position: absolute;
+      inset: 0;
+      display: block;
+      cursor: pointer;
+    }
+
+    .video-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 0, 0, 0.92);
+      color: #fff;
+      font-size: 34px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      transition: transform .2s ease;
+    }
+
+    .video-thumbnail:hover .play-button {
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .video-side {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+    
     @media (max-width: 1080px) {
       .benefits-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -605,18 +635,17 @@
             Veja os benefícios e entenda como pode participar.
           </p>
         </div>
-
+<!-- Video de chamada DeMolindo -->
         <div class="video-card">
           <div class="video-frame"> <!-- Temos um recado para você! Assista este vídeo. -->
-            <div class="video-wrapper">
-              <iframe 
-                src="https://www.youtube.com/embed/8f4-rFJrrUo"
-                title="Vídeo de convite - Faça Parte"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-              </iframe>
+            <div class="video-wrapper" id="video-container">
+              <button class="video-thumbnail" type="button" onclick="loadVideo()" aria-label="Assistir vídeo da campanha">
+                <img src="assets/demolindo-video-thumbnail.png" alt="Vídeo da campanha">
+                <span class="play-button">▶</span>
+              </button>
             </div>
           </div>
+
           <div class="video-side">
             <div class="mini-card">
               <strong>Aprendizado real</strong>
@@ -864,5 +893,19 @@
       Capítulo Grande Campinas n.30 da Ordem DeMolay • cgc30.com/facaparte
     </div>
   </footer>
+  <script>
+  function loadVideo() {
+    const container = document.getElementById('video-container');
+
+    container.innerHTML = `
+      <iframe 
+        src="https://www.youtube.com/embed/8f4-rFJrrUo?autoplay=1"
+        title="Vídeo de convite - Faça Parte"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    `;
+  }
+</script>
 </body>
 </html>

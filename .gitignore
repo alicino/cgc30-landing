@@ -3,6 +3,8 @@
 .AppleDouble
 .LSOverride
 
+# Geral
+index-copy.html
 
 # Node tooling (se usar algum utilitário local)
 Makefile
