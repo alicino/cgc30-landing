@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faça Parte | Capítulo Grande Campinas n.30</title>
+  <meta name="description" content="Campanha de voluntariado para criação e manutenção do site do Capítulo Grande Campinas n.30 da Ordem DeMolay." />
+  <meta property="og:title" content="Faça Parte do Nosso Legado Digital" />
+  <meta property="og:description" content="Ajude a construir e manter o site oficial do Capítulo Grande Campinas n.30." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cgc30.com/facaparte" />
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #091327;
+      --bg-2: #0f1b34;
+      --primary: #caa22b;
+      --primary-2: #f1cd5a;
+      --red: #b3261e;
+      --red-2: #d63a2f;
+      --ink: #eaf0ff;
+      --muted: #c7d0ea;
+      --card: rgba(255,255,255,0.08);
+      --card-border: rgba(255,255,255,0.16);
+      --shadow: 0 18px 44px rgba(0,0,0,.28);
+      --max: 1180px;
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,0.12) 0 1px, transparent 2px) 0 0/48px 48px,
+        radial-gradient(circle at 75% 32%, rgba(255,255,255,0.09) 0 1px, transparent 2px) 0 0/72px 72px,
+        linear-gradient(180deg, var(--bg-1), var(--bg-2) 42%, #0a1327 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size: .95rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 0 68px;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto;
+      border-radius: 999px;
+      filter: blur(70px);
+      opacity: .38;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 340px; height: 340px;
+      right: -40px; top: 30px;
+      background: rgba(202,162,43,.35);
+    }
+
+    .hero::after {
+      width: 260px; height: 260px;
+      left: -60px; top: 140px;
+      background: rgba(182,38,30,.28);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 28px;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Cinzel', serif;
+      line-height: 1.1;
+      margin: 0 0 14px;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 4.5rem);
+      max-width: 10ch;
+      text-wrap: balance;
+    }
+
+    .highlight { color: var(--primary-2); }
+
+    .hero p.lead {
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin: 0 0 22px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 16px 0 26px;
+    }
+
+    .badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.11);
+      color: #eef3ff;
+      font-size: .95rem;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 6px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(180deg, var(--primary-2), var(--primary));
+      color: #0f1625;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.06);
+      color: var(--ink);
+      border-color: rgba(255,255,255,.18);
+    }
+
+    .hero-art {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 420px;
+    }
+
+    .hero-logo-shell {
+      width: min(100%, 470px);
+      padding: 18px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-logo {
+      width: 100%;
+      max-height: 560px;
+      object-fit: contain;
+      filter: drop-shadow(0 22px 30px rgba(0,0,0,.35));
+    }
+
+    .url-banner {
+      margin-top: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(10,18,38,.55);
+      border: 1px solid rgba(255,255,255,.13);
+      color: #f6f8ff;
+      font-size: .98rem;
+      word-break: break-word;
+    }
+
+    .url-banner a {
+      color: #D4AF37;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .url-banner a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      padding: 34px 0 26px;
+    }
+
+    .section-head {
+      margin-bottom: 22px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 72ch;
+      margin: 0;
+    }
+
+    .video-card,
+    .card,
+    .form-shell,
+    .role-card {
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+
+    .video-card {
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .video-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(202,162,43,.15), rgba(182,38,30,.14));
+      min-height: 260px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 28px;
+    }
+
+    .video-frame strong {
+      font-size: 1.3rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .video-side {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .mini-card {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.06rem;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .card {
+      padding: 22px;
+    }
+
+    .card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 18px;
+    }
+
+    .areas-grid .area-card {
+      grid-column: span 2;
+      min-height: 190px;
+      text-align: center;
+      display: grid;
+      align-content: start;
+      justify-items: center;
+    }
+
+    .areas-grid .area-card:nth-child(4) {
+      grid-column: 2 / span 2;
+    }
+
+    .areas-grid .area-card:nth-child(5) {
+      grid-column: 4 / span 2;
+    }
+
+    .area-icon {
+      width: 60px;
+      height: 60px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      margin-bottom: 14px;
+      background: linear-gradient(180deg, rgba(241,205,90,.22), rgba(182,38,30,.14));
+      border: 1px solid rgba(255,255,255,.12);
+      font-size: 1.6rem;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .step {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.11);
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: 10px;
+      background: linear-gradient(180deg, var(--primary-2), var(--primary));
+      color: #0f1625;
+      font-weight: 800;
+    }
+
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .role-card { padding: 22px; }
+    .role-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .role-card p { color: var(--muted); margin: 0 0 10px; }
+    .role-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .role-card li + li { margin-top: 6px; }
+
+    .form-shell {
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .form-note {
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+
+    .form-embed {
+      width: 100%;
+      min-height: 1180px;
+      border: 0;
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .apply-box {
+      max-width: 760px;
+      margin: 32px auto 0;
+      padding: 32px 24px;
+      text-align: center;
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+      border: 1px solid #e5e7eb;
+      border-radius: 22px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.08);
+    }
+
+    .apply-label {
+      margin: 0 0 8px;
+      font-weight: 700;
+      color: #B22222;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: .85rem;
+    }
+
+    .apply-box h3 {
+      color: #1F2937;
+      font-weight: 2000;
+      letter-spacing: -0.5px;
+    }
+
+    .apply-box p {
+      margin: 0 auto 20px;
+      max-width: 620px;
+      color: #4b5563;
+    }
+
+    .apply-btn {
+      display: inline-block;
+      padding: 14px 26px;
+      border-radius: 999px;
+      background: #D4AF37;
+      color: #111827;
+      font-weight: 800;
+      text-decoration: none;
+      transition: all .2s ease;
+    }
+
+    .apply-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,.15);
+    }
+
+    .apply-title {
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: #0B1F3A;
+      margin: 10px 0 14px;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .closing {
+      text-align: center;
+      padding-bottom: 56px;
+    }
+
+    .closing-inner {
+      border-radius: 28px;
+      padding: 34px 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+    }
+
+    .closing p {
+      color: var(--muted);
+      max-width: 60ch;
+      margin: 0 auto 20px;
+      font-size: 1.06rem;
+    }
+
+    footer {
+      padding: 0 0 34px;
+      color: #bfc8e3;
+      text-align: center;
+      font-size: .96rem;
+    }
+
+    @media (max-width: 1080px) {
+      .benefits-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .roles-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .video-card {
+        grid-template-columns: 1fr;
+      }
+      .hero-art {
+        order: -1;
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .areas-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .areas-grid .area-card,
+      .areas-grid .area-card:nth-child(4),
+      .areas-grid .area-card:nth-child(5) {
+        grid-column: auto;
+      }
+
+      .benefits-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 24px;
+      }
+
+      .form-embed {
+        min-height: 1320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="eyebrow">Projeto • Página oficial: cgc30.com/facaparte</div>
+
+      <div class="hero-grid">
+        <div>
+          <h1>Faça Parte do Nosso <span class="highlight">Legado Digital</span></h1>
+          <p class="lead">
+            Ajude a criar, manter e fortalecer o site oficial do Capítulo Grande Campinas n.30 da Ordem DeMolay.
+            Se você gosta de tecnologia, escrita, fotos, organização ou comunicação, existe um espaço para você.
+          </p>
+
+          <div class="hero-badges">
+            <span class="badge">Membros ativos</span>
+            <span class="badge">Seniores DeMolay</span>
+            <span class="badge">Conselho Consultivo</span>
+            <span class="badge">Clube de Mães</span>
+          </div>
+
+          <div class="cta-group">
+            <a class="btn btn-primary" href="#formulario">Quero participar</a>
+            <a class="btn btn-secondary" href="#funcoes">Ver funções</a>
+          </div>
+
+          <div class="url-banner">
+            <strong>Acesse a página provisória:</strong> <a href="https://site.cgc30.com" target="_blank" rel="noopener noreferrer"> https://site.cgc30.com
+</a>
+          </div>
+        </div>
+
+        <div class="hero-art">
+          <div class="hero-logo-shell">
+            <img class="hero-logo" src="assets/demolay-logo.png" alt="Emblema da Ordem DeMolay">
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section aria-labelledby="video-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="video-title">Um convite para quem quer construir algo importante</h2>
+          <p>
+            Veja os benefícios e entenda como pode participar.
+          </p>
+        </div>
+
+        <div class="video-card">
+          <div class="video-frame"> <!-- Temos um recado para você! Assista este vídeo. -->
+            <div class="video-wrapper">
+              <iframe 
+                src="https://www.youtube.com/embed/8f4-rFJrrUo"
+                title="Vídeo de convite - Faça Parte"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+          <div class="video-side">
+            <div class="mini-card">
+              <strong>Aprendizado real</strong>
+              Participe de um projeto com propósito e desenvolva habilidades práticas.
+            </div>
+            <div class="mini-card">
+              <strong>Trabalho em equipe</strong>
+              Construa algo relevante com outras pessoas comprometidas com o Capítulo.
+            </div>
+            <div class="mini-card">
+              <strong>Legado</strong>
+              Ajude a registrar a história e fortalecer a presença digital da instituição.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="beneficios-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="beneficios-title">Por que vale a pena fazer parte?</h2>
+          <p>Mais do que um site, este projeto é uma oportunidade de aprendizado, colaboração e construção de legado.</p>
+        </div>
+
+        <div class="benefits-grid">
+          <article class="card">
+            <h3>Desenvolva habilidades reais</h3>
+            <p>Pratique tecnologia, comunicação, organização e produção de conteúdo em um projeto concreto.</p>
+          </article>
+          <article class="card">
+            <h3>Trabalhe em equipe</h3>
+            <p>Construa algo importante ao lado de voluntários que compartilham do mesmo propósito.</p>
+          </article>
+          <article class="card">
+            <h3>Registre a história</h3>
+            <p>Ajude a preservar eventos, memórias, informações e valores do Capítulo.</p>
+          </article>
+          <article class="card">
+            <h3>Deixe sua contribuição</h3>
+            <p>Cada texto, foto, ideia e revisão ajuda a fortalecer o futuro digital do Capítulo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="areas-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="areas-title">Escolha onde você pode contribuir</h2>
+          <p>Estas são algumas da maneiras que você pode colaborar.</p>
+        </div>
+
+        <div class="areas-grid">
+          <article class="card area-card">
+            <div class="area-icon">💻</div>
+            <h3>Tecnologia</h3>
+            <p>Atualização do site, estrutura, publicação e melhorias visuais e técnicas.</p>
+          </article>
+
+          <article class="card area-card">
+            <div class="area-icon">✍️</div>
+            <h3>Conteúdo e artigos</h3>
+            <p>Textos institucionais, notícias, história do Capítulo e revisões de conteúdo.</p>
+          </article>
+
+          <article class="card area-card">
+            <div class="area-icon">📸</div>
+            <h3>Fotos e mídia</h3>
+            <p>Registro de eventos, seleção de imagens e organização de materiais visuais.</p>
+          </article>
+
+          <article class="card area-card">
+            <div class="area-icon">📢</div>
+            <h3>Comunicação</h3>
+            <p>Divulgação, chamadas, mensagens de engajamento e apoio à campanha.</p>
+          </article>
+
+          <article class="card area-card">
+            <div class="area-icon">📅</div>
+            <h3>Organização e atualização</h3>
+            <p>Calendário, revisão geral, consistência das informações e acompanhamento.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="como-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="como-title">Como participar?</h2>
+          <p>O processo é simples e foi pensado para reduzir a barreira de entrada.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            Escolha uma ou mais áreas com as quais você se identifica.
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            Preencha o formulário de interesse.
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            Aguarde o contato da equipe organizadora.
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            Comece a contribuir de acordo com o seu perfil e disponibilidade.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="funcoes" aria-labelledby="funcoes-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="funcoes-title">Funções e instruções para cada área</h2>
+          <p>Você não precisa ser especialista. Muitas funções podem ser exercidas por quem tem vontade de aprender e colaborar com responsabilidade.</p>
+        </div>
+
+        <div class="roles-grid">
+          <article class="role-card">
+            <h3>Tecnologia</h3>
+            <p>Para quem gosta de site, GitHub Pages, HTML, CSS, organização digital ou deseja aprender.</p>
+            <ul>
+              <li>Atualizar páginas e seções do site</li>
+              <li>Organizar arquivos e conteúdo publicado</li>
+              <li>Revisar links, menus e estrutura</li>
+              <li>Apoiar melhorias de visual e performance</li>
+            </ul>
+          </article>
+
+          <article class="role-card">
+            <h3>Conteúdo e artigos</h3>
+            <p>Para quem gosta de escrever, revisar ou transformar ideias em textos claros.</p>
+            <ul>
+              <li>Produzir artigos e textos institucionais</li>
+              <li>Registrar a história do Capítulo</li>
+              <li>Escrever resumos de eventos</li>
+              <li>Revisar ortografia e clareza</li>
+            </ul>
+          </article>
+
+          <article class="role-card">
+            <h3>Fotos e mídia</h3>
+            <p>Para quem gosta de registrar momentos e cuidar do material visual.</p>
+            <ul>
+              <li>Fotografar eventos e atividades</li>
+              <li>Selecionar imagens para publicação</li>
+              <li>Organizar pastas e arquivos de mídia</li>
+              <li>Preservar registros visuais históricos</li>
+            </ul>
+          </article>
+
+          <article class="role-card">
+            <h3>Comunicação e divulgação</h3>
+            <p>Para quem tem facilidade em comunicar, engajar e mobilizar pessoas.</p>
+            <ul>
+              <li>Divulgar novidades e chamadas do projeto</li>
+              <li>Preparar textos curtos de divulgação</li>
+              <li>Apoiar a campanha de engajamento</li>
+              <li>Estimular novas participações</li>
+            </ul>
+          </article>
+
+          <article class="role-card">
+            <h3>Organização e atualização</h3>
+            <p>Para quem gosta de acompanhar informações, revisar dados e manter tudo em ordem.</p>
+            <ul>
+              <li>Atualizar informações gerais do site</li>
+              <li>Revisar calendário e eventos</li>
+              <li>Acompanhar pendências</li>
+              <li>Garantir consistência nas publicações</li>
+            </ul>
+          </article>
+
+          <article class="role-card">
+            <h3>Quem pode participar?</h3>
+            <p>O convite é aberto para membros ativos, Seniores DeMolay, tios maçons do Conselho Consultivo e tias do Clube de Mães.</p>
+            <ul>
+              <li>Com experiência ou sem experiência</li>
+              <li>Com pouco ou mais tempo disponível</li>
+              <li>Com vontade de aprender e colaborar</li>
+              <li>Com desejo de ajudar a construir algo relevante</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="formulario" aria-labelledby="form-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="form-title">Quero fazer parte</h2>
+          <p>
+            Preencha o formulário oficial de participação e conte como você gostaria de contribuir 
+            com o projeto do site do Capítulo.
+          </p>
+        </div>
+
+        <div class="apply-box">
+              <p class="apply-label">Pronto para participar?</p>
+
+              <h3 class="apply-title">Entre para o Time!</h3>
+
+              <p>
+                Clique no botão abaixo para acessar o formulário. Não é necessário ter experiência — 
+                o mais importante é a vontade de colaborar. Vamos juntos construir esta história!
+              </p>
+
+              <a 
+                class="apply-btn"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdBIK4czqZwBvPPe-VexmE5pmXW033V_QzFfoi9Scply1PP9Q/viewform"
+                target="_blank"
+                rel="noopener noreferrer">
+                Quero Participar
+              </a>
+
+              <!-- 👇 AQUI -->
+              <p style="font-size: 0.9rem; color:#6B7280; margin-top:12px;">
+                Leva menos de 2 minutos para responder
+              </p>
+            </div>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <div class="container">
+        <div class="closing-inner">
+          <h2 id="closing-title">O futuro do Capítulo também se constrói online</h2>
+          <p>
+            Se você acredita na força da Ordem DeMolay, venha construir esse projeto com a gente.
+            Toda contribuição importa.
+          </p>
+          <!-- <a class="btn btn-primary" href="#formulario">Fazer parte agora</a> -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Capítulo Grande Campinas n.30 da Ordem DeMolay • cgc30.com/facaparte
+    </div>
+  </footer>
+</body>
+</html>
