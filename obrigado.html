@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CGC30 — Obrigado!</title>
+  <title>CGC30 · Obrigado!</title>
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
@@ -132,6 +132,25 @@
     }
     .message strong { color: var(--text); font-weight: 600; }
 
+    .confirm-notice {
+      font-size: clamp(.82rem, 2.1vw, .96rem);
+      color: var(--text);
+      font-weight: 400;
+      line-height: 1.8;
+      max-width: 460px;
+      margin-bottom: 32px;
+      padding: 16px 22px;
+      border: 1px solid rgba(212,175,55,.22);
+      border-radius: 10px;
+      background: rgba(10,6,18,.45);
+      backdrop-filter: blur(6px);
+      text-shadow: 0 1px 6px rgba(0,0,0,.7);
+    }
+    .confirm-notice strong {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
     .divider {
       width: 60px;
       height: 1px;
@@ -196,6 +215,12 @@
 
     <h1>Muito <em>obrigado</em><br>pela sua inscrição!</h1>
 
+    <p class="confirm-notice">
+      Verifique seu e-mail. Uma mensagem foi enviada para que você confirme sua inscrição.<br>
+      Procure pelo título <strong>"Confirm your subscription"</strong><br>
+      em sua Inbox ou na caixa de Spam.
+    </p>
+
     <div class="divider"></div>
 
     <p class="message">
@@ -211,7 +236,7 @@
   </main>
 
   <footer>
-    &copy; 2026 Capítulo Grande Campinas n.30 &nbsp;&mdash;&nbsp; Ordem DeMolay
+    &copy; 2026 Capítulo Grande Campinas n.30 &nbsp;&middot;&nbsp; Ordem DeMolay
   </footer>
 
   <script>
