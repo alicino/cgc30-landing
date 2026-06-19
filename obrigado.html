@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CGC30 — Obrigado!</title>
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:       #d4af37;
+      --gold-light: #f0d060;
+      --gold-dim:   #8a7020;
+      --text:       #e8e0cc;
+      --muted:      #9a8e80;
+    }
+
+    html, body {
+      height: 100%;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      background: linear-gradient(
+        135deg,
+        #1a0a0a 0%,
+        #2b0d1a 12%,
+        #1e0b2e 26%,
+        #150820 38%,
+        #1c0e06 50%,
+        #2a1408 62%,
+        #1a1520 74%,
+        #0f0f14 86%,
+        #050505 100%
+      );
+      background-attachment: fixed;
+    }
+
+    #canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    #vignette {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background: radial-gradient(ellipse at center, transparent 20%, rgba(5,5,10,.55) 100%);
+      pointer-events: none;
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .chapter-label {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(.6rem, 1.8vw, .78rem);
+      font-weight: 700;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+      opacity: .8;
+    }
+
+    .logo-wrap {
+      margin-bottom: 36px;
+      animation: floatY 6s ease-in-out infinite;
+    }
+    .logo-wrap img {
+      width: min(120px, 30vw);
+      height: auto;
+      filter: drop-shadow(0 0 24px #d4af3755) drop-shadow(0 0 6px #d4af3799);
+    }
+
+    .check {
+      font-size: clamp(2rem, 6vw, 3rem);
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 12px #d4af3788);
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: clamp(1.6rem, 5vw, 3rem);
+      line-height: 1.15;
+      color: #fff;
+      text-shadow:
+        0 0 12px rgba(212, 175, 55, .5),
+        0 0 28px rgba(212, 175, 55, .2),
+        0 2px 6px rgba(0, 0, 0, .9);
+      margin-bottom: 20px;
+    }
+
+    h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dim));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 6px #d4af3799) drop-shadow(0 2px 4px #00000088);
+    }
+
+    .message {
+      font-size: clamp(.9rem, 2.4vw, 1.1rem);
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.85;
+      max-width: 480px;
+      margin-bottom: 44px;
+      text-shadow: 0 1px 6px rgba(0,0,0,.7);
+    }
+    .message strong { color: var(--text); font-weight: 600; }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 40px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 30px;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(.72rem, 1.8vw, .84rem);
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(212,175,55,.35);
+      border-radius: 8px;
+      text-decoration: none;
+      background: rgba(10,6,18,.5);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 0 1px rgba(212,175,55,.08), 0 8px 28px rgba(0,0,0,.45);
+      transition: border-color .25s, box-shadow .25s, transform .2s;
+    }
+    .back-btn:hover {
+      border-color: rgba(212,175,55,.7);
+      box-shadow: 0 0 20px rgba(212,175,55,.2), 0 10px 32px rgba(0,0,0,.55);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 20px;
+      font-size: .72rem;
+      color: #3a3028;
+      letter-spacing: .08em;
+    }
+
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="canvas"></canvas>
+  <div id="vignette"></div>
+
+  <main>
+    <p class="chapter-label">Capítulo Grande Campinas n.30 &nbsp;·&nbsp; Ordem DeMolay</p>
+
+    <div class="logo-wrap">
+      <img src="assets/demolay-brasao.png" alt="Brasão da Ordem DeMolay" />
+    </div>
+
+    <div class="check">⚜</div>
+
+    <h1>Muito <em>obrigado</em><br>pela sua inscrição!</h1>
+
+    <div class="divider"></div>
+
+    <p class="message">
+      Sua presença já faz parte desta história.<br>
+      Em <strong>2 de agosto de 2026</strong>, você será um dos primeiros<br>
+      a saber o que o <strong>Capítulo Grande Campinas n.30</strong><br>
+      tem reservado para todos nós.
+    </p>
+
+    <a href="/em-breve.html" class="back-btn">
+      ← Voltar ao site
+    </a>
+  </main>
+
+  <footer>
+    &copy; 2026 Capítulo Grande Campinas n.30 &nbsp;&mdash;&nbsp; Ordem DeMolay
+  </footer>
+
+  <script>
+    /* ── Particle field ── */
+    (function () {
+      const cv  = document.getElementById('canvas');
+      const ctx = cv.getContext('2d');
+      const GOLD  = [212, 175, 55];
+      const WHITE = [255, 248, 220];
+      let W, H, stars = [];
+
+      function resize() {
+        W = cv.width  = window.innerWidth;
+        H = cv.height = window.innerHeight;
+      }
+
+      function rand(a, b) { return a + Math.random() * (b - a); }
+
+      function init() {
+        stars = [];
+        const n = Math.min(180, Math.floor(W * H / 7500));
+        for (let i = 0; i < n; i++) {
+          stars.push({
+            x:  rand(0, W),
+            y:  rand(0, H),
+            r:  rand(.25, 1.7),
+            a:  rand(.04, .55),
+            dx: rand(-.04, .04),
+            dy: rand(-.05, -.015),
+            tw: rand(0, Math.PI * 2),
+            ts: rand(.008, .035),
+            c:  Math.random() > .28 ? WHITE : GOLD,
+          });
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (const s of stars) {
+          s.tw += s.ts;
+          const a = s.a * (.55 + .45 * Math.sin(s.tw));
+          const [r, g, b] = s.c;
+
+          if (s.c === GOLD && a > .25) {
+            const grd = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 6);
+            grd.addColorStop(0, `rgba(${r},${g},${b},${(a * .35).toFixed(3)})`);
+            grd.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r * 6, 0, Math.PI * 2);
+            ctx.fillStyle = grd;
+            ctx.fill();
+          }
+
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${r},${g},${b},${a.toFixed(3)})`;
+          ctx.fill();
+
+          s.x += s.dx;
+          s.y += s.dy;
+          if (s.y < -2)    s.y = H + 2;
+          if (s.x < -2)    s.x = W + 2;
+          if (s.x > W + 2) s.x = -2;
+        }
+        requestAnimationFrame(draw);
+      }
+
+      resize();
+      init();
+      draw();
+      window.addEventListener('resize', () => { resize(); init(); });
+    })();
+  </script>
+</body>
+</html>
