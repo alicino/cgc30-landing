@@ -144,7 +144,7 @@
       color: var(--muted);
       font-weight: 300;
       letter-spacing: .06em;
-      margin-bottom: 28px;
+      margin-bottom: 52px;
       text-shadow: 0 1px 6px rgba(0,0,0,.7);
     }
 
@@ -155,7 +155,7 @@
       align-items: flex-start;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 52px;
+      margin-bottom: 24px;
     }
 
     .unit {
@@ -167,29 +167,9 @@
     }
 
     .unit-box {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 12px;
-      background: rgba(10, 6, 18, .65);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(212, 175, 55, .2);
-      box-shadow:
-        0 0 0 1px rgba(212, 175, 55, .08),
-        0 10px 40px rgba(0,0,0,.6),
-        inset 0 1px 0 rgba(212, 175, 55, .12);
-    }
-    .unit-box::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 12%; right: 12%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
-      opacity: .4;
     }
 
     .unit-num {
@@ -477,7 +457,7 @@
     </div>
 
     <button class="notify-btn" onclick="document.getElementById('notifyModal').classList.add('open')">
-      ✉ Quero Ser Notificado do Lançamento
+      ✉ Quero Ser Notificado
     </button>
 
     <p class="cta-text" style="margin-top: 36px;">

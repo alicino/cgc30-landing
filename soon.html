@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CGC30 · 02.08.2026</title>
+  <meta name="description" content="Algo extraordinário está prestes a chegar. O Capítulo Grande Campinas n.30 da Ordem DeMolay revelará tudo em 2 de agosto de 2026. Marque na agenda." />
+  <meta property="og:title" content="CGC30 · Algo grande está chegando" />
+  <meta property="og:description" content="02 de Agosto de 2026. Prepare-se." />
+  <meta property="og:image" content="https://cgc30.com/assets/brasao_demolay_new.png" />
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@200;300;400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #08060c;
+      --gold:      #c4a44e;
+      --gold-lt:   #e8d080;
+      --gold-dk:   #786228;
+      --cream:     #ede9df;
+      --muted:     #6a6258;
+      --border:    rgba(196, 164, 78, .15);
+      --border-hi: rgba(196, 164, 78, .28);
+    }
+
+    html, body { height: 100%; overflow-x: hidden; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Josefin Sans', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── Grain noise overlay ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      pointer-events: none;
+      opacity: .045;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ── Canvas ── */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── Vignette ── */
+    .vignette {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background: radial-gradient(ellipse at 50% 50%, transparent 25%, rgba(8,6,12,.65) 100%);
+      pointer-events: none;
+    }
+
+    /* ── Page grid ── */
+    .page {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    /* ── Top bar ── */
+    .topbar {
+      padding: 28px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp .7s ease .05s forwards;
+    }
+
+    .topbar-left {
+      font-size: .6rem;
+      font-weight: 400;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .topbar-right {
+      font-family: 'Space Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .14em;
+      color: var(--gold-dk);
+    }
+
+    /* ── Main ── */
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 72px 40px 80px;
+      text-align: center;
+    }
+
+    /* ── Emblem ── */
+    .emblem {
+      margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeUp .9s ease .25s forwards;
+    }
+    .emblem img {
+      width: min(88px, 24vw);
+      height: auto;
+      animation: glowPulse 4s ease-in-out infinite;
+    }
+    @keyframes glowPulse {
+      0%, 100% {
+        filter: saturate(.7) sepia(.25) brightness(1.05)
+                drop-shadow(0 0 18px rgba(196,164,78,.22))
+                drop-shadow(0 0 5px rgba(196,164,78,.15));
+      }
+      50% {
+        filter: saturate(.85) sepia(.15) brightness(1.18)
+                drop-shadow(0 0 36px rgba(196,164,78,.42))
+                drop-shadow(0 0 10px rgba(196,164,78,.3));
+      }
+    }
+
+    /* ── Eyebrow ── */
+    .eyebrow {
+      font-size: .58rem;
+      font-weight: 600;
+      letter-spacing: .55em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp .75s ease .4s forwards;
+    }
+
+    /* ── Headline ── */
+    h1 {
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp 1s ease .5s forwards;
+      line-height: 1;
+    }
+
+    .h1-plain {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 6.5vw, 5rem);
+      color: var(--cream);
+      letter-spacing: .04em;
+      line-height: 1.15;
+    }
+
+    .h1-hero {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-style: italic;
+      font-size: clamp(3.8rem, 11.5vw, 9.5rem);
+      line-height: .9;
+      letter-spacing: -.02em;
+      background: linear-gradient(135deg, var(--gold-lt) 0%, var(--gold) 45%, var(--gold-dk) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 30px rgba(196,164,78,.2));
+    }
+
+    .h1-sub {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 5.5vw, 4.2rem);
+      color: rgba(237, 233, 223, .7);
+      letter-spacing: .06em;
+      line-height: 1.4;
+    }
+
+    /* ── Ornament divider ── */
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      width: min(520px, 88vw);
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp .75s ease .7s forwards;
+    }
+    .ornament-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dk) 80%);
+    }
+    .ornament-line.rev {
+      background: linear-gradient(270deg, transparent, var(--gold-dk) 80%);
+    }
+    .ornament-glyph {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .9rem;
+      color: var(--gold-dk);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    /* ── Date ── */
+    .launch-date {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(.75rem, 2.2vw, 1rem);
+      letter-spacing: .35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp .75s ease .78s forwards;
+    }
+
+    .launch-note {
+      font-size: .58rem;
+      font-weight: 300;
+      letter-spacing: .38em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 60px;
+      opacity: 0;
+      animation: fadeUp .75s ease .85s forwards;
+    }
+
+    /* ── Countdown ── */
+    .countdown-section {
+      margin-bottom: 60px;
+      opacity: 0;
+      animation: fadeUp .85s ease .95s forwards;
+    }
+
+    .cd-label {
+      font-size: .54rem;
+      font-weight: 300;
+      letter-spacing: .45em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .countdown {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: clamp(8px, 2.5vw, 32px);
+    }
+
+    .cd-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cd-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(3.2rem, 10vw, 7.5rem);
+      line-height: 1;
+      color: var(--cream);
+      letter-spacing: -.03em;
+      text-shadow:
+        0 0 60px rgba(196,164,78,.08),
+        0 2px 8px rgba(0,0,0,.7);
+      position: relative;
+      display: block;
+      transition: color .15s;
+    }
+
+    .cd-num::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 5%;
+      right: 5%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dk) 30%, var(--gold-dk) 70%, transparent);
+    }
+
+    .cd-num.tick {
+      animation: numTick .22s cubic-bezier(.16,1,.3,1);
+    }
+    @keyframes numTick {
+      0%   { transform: translateY(-8px) scaleY(.75); opacity: .2; }
+      100% { transform: translateY(0)    scaleY(1);   opacity: 1;  }
+    }
+
+    .cd-unit-label {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(.42rem, 1.2vw, .56rem);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold-dk);
+    }
+
+    .cd-sep {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 6.5vw, 5rem);
+      font-weight: 300;
+      color: rgba(120, 98, 40, .5);
+      line-height: 1;
+      margin-bottom: 28px;
+      animation: blink 1.6s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: .5; }
+      50%       { opacity: .1; }
+    }
+
+    /* ── CTA ── */
+    .cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+      opacity: 0;
+      animation: fadeUp .8s ease 1.15s forwards;
+    }
+
+    .btn-notify {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      padding: 14px 38px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: #08060c;
+      background: linear-gradient(135deg, var(--gold-lt) 0%, var(--gold) 100%);
+      border: none;
+      border-radius: 1px;
+      cursor: pointer;
+      position: relative;
+      transition: transform .2s, box-shadow .25s;
+      box-shadow:
+        0 0 0 1px rgba(196,164,78,.3),
+        0 8px 28px rgba(0,0,0,.55),
+        0 0 40px rgba(196,164,78,.12);
+    }
+    .btn-notify::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 2px;
+      background: linear-gradient(135deg, var(--gold-lt), transparent 60%);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    .btn-notify:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 0 0 1px rgba(196,164,78,.5),
+        0 14px 38px rgba(0,0,0,.65),
+        0 0 60px rgba(196,164,78,.25);
+    }
+    .btn-notify:hover::before { opacity: .35; }
+    .btn-notify:active { transform: translateY(-1px); }
+
+    .cta-hint {
+      font-size: .56rem;
+      font-weight: 300;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── Share row ── */
+    .share-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .share-row-label {
+      font-size: .54rem;
+      font-weight: 400;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(106,98,88,.6);
+      margin-right: 6px;
+    }
+
+    .sh-btn {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream);
+      opacity: .45;
+      border: 1px solid rgba(237,233,223,.07);
+      border-radius: 1px;
+      transition: opacity .2s, transform .2s, border-color .2s, background .2s;
+      background: rgba(255,255,255,.02);
+    }
+    .sh-btn:hover {
+      opacity: .9;
+      transform: translateY(-3px);
+      border-color: var(--border-hi);
+      background: rgba(196,164,78,.08);
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 2;
+      padding: 22px 52px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp .6s ease 1.35s forwards;
+    }
+
+    .footer-text {
+      font-family: 'Space Mono', monospace;
+      font-size: .54rem;
+      letter-spacing: .16em;
+      color: var(--muted);
+      opacity: .6;
+    }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(8,6,12,.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal-box {
+      position: relative;
+      width: min(560px, 94vw);
+      border-radius: 1px;
+      overflow: hidden;
+      border: 1px solid var(--border-hi);
+      box-shadow:
+        0 0 0 1px rgba(196,164,78,.05),
+        0 32px 80px rgba(0,0,0,.9),
+        0 0 60px rgba(196,164,78,.06);
+      animation: modalIn .28s cubic-bezier(.16,1,.3,1);
+      cursor: default;
+    }
+    @keyframes modalIn {
+      from { transform: translateY(22px) scale(.96); opacity: 0; }
+      to   { transform: translateY(0)    scale(1);   opacity: 1; }
+    }
+
+    .modal-box iframe {
+      display: block;
+      width: 100%;
+      height: 420px;
+      border: none;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      z-index: 1;
+      background: rgba(8,6,12,.85);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      width: 28px;
+      height: 28px;
+      border-radius: 1px;
+      font-size: .8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s, border-color .2s;
+      line-height: 1;
+    }
+    .modal-close:hover {
+      background: rgba(196,164,78,.15);
+      border-color: var(--border-hi);
+    }
+
+    /* ── Global animation ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .topbar { padding: 20px 24px; flex-direction: column; gap: 6px; }
+      .topbar-right { display: none; }
+      main { padding: 52px 24px 64px; }
+      footer { padding: 18px 24px; }
+      .cd-sep { display: none; }
+      .countdown { gap: clamp(10px, 4vw, 24px); }
+    }
+
+    @media (max-width: 380px) {
+      .h1-hero { font-size: clamp(3rem, 14vw, 5rem); }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+  <div class="vignette"></div>
+
+  <div class="page">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <span class="topbar-left">Capítulo Grande Campinas &nbsp;·&nbsp; n.30 &nbsp;·&nbsp; Ordem DeMolay</span>
+      <span class="topbar-right">02 · VIII · MMXXVI</span>
+    </header>
+
+    <!-- Main content -->
+    <main>
+
+      <div class="emblem">
+        <img src="assets/demolay-brasao.png" alt="Brasão da Ordem DeMolay" />
+      </div>
+
+      <p class="eyebrow">Em breve</p>
+
+      <h1>
+        <span class="h1-plain">Algo</span>
+        <span class="h1-hero">extraordinário</span>
+        <span class="h1-sub">está chegando</span>
+      </h1>
+
+      <div class="ornament">
+        <div class="ornament-line"></div>
+        <span class="ornament-glyph">✦</span>
+        <div class="ornament-line rev"></div>
+      </div>
+
+      <p class="launch-date">02 · Agosto · 2026</p>
+      <p class="launch-note">Lançamento oficial do site</p>
+
+      <div class="countdown-section">
+        <p class="cd-label">Contagem regressiva</p>
+        <div class="countdown" role="timer" aria-label="Contagem regressiva para o lançamento">
+          <div class="cd-unit">
+            <span class="cd-num" id="cd-days">00</span>
+            <span class="cd-unit-label">Dias</span>
+          </div>
+          <span class="cd-sep" aria-hidden="true">·</span>
+          <div class="cd-unit">
+            <span class="cd-num" id="cd-hours">00</span>
+            <span class="cd-unit-label">Horas</span>
+          </div>
+          <span class="cd-sep" aria-hidden="true">·</span>
+          <div class="cd-unit">
+            <span class="cd-num" id="cd-mins">00</span>
+            <span class="cd-unit-label">Min</span>
+          </div>
+          <span class="cd-sep" aria-hidden="true">·</span>
+          <div class="cd-unit">
+            <span class="cd-num" id="cd-secs">00</span>
+            <span class="cd-unit-label">Seg</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-wrap">
+        <button class="btn-notify"
+          onclick="document.getElementById('notifyModal').classList.add('open')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          Quero Ser Notificado
+        </button>
+
+        <p class="cta-hint">Seja o primeiro a saber · Entrada gratuita</p>
+
+        <div class="share-row">
+          <span class="share-row-label">Compartilhar</span>
+
+          <!-- WhatsApp -->
+          <a class="sh-btn" aria-label="Compartilhar no WhatsApp"
+             href="https://wa.me/?text=Algo%20extraordin%C3%A1rio%20est%C3%A1%20chegando%20em%202%20de%20agosto%20de%202026.%20Confira%3A%20https%3A%2F%2Fcgc30.com%2Fem-breve.html"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 32 32" width="14" height="14" fill="currentColor">
+              <path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.4 2 7.7L.4 31.6l8.2-2c2.2 1.2 4.7 1.8 7.4 1.8 8.6 0 15.6-7 15.6-15.6S24.6.4 16 .4zm0 28.5c-2.5 0-4.9-.7-7-1.9l-.5-.3-5 1.3 1.3-4.8-.3-.5C3.2 21 2.5 18.6 2.5 16 2.5 8.5 8.5 2.5 16 2.5S29.5 8.5 29.5 16 23.5 28.9 16 28.9zm8.5-10.7c-.5-.2-2.8-1.4-3.2-1.5-.4-.2-.7-.2-1 .2s-1.1 1.5-1.4 1.8c-.3.3-.5.3-1 .1-.5-.2-2-.7-3.8-2.3-1.4-1.2-2.3-2.7-2.6-3.2-.3-.5 0-.7.2-.9l.7-.8c.2-.3.3-.5.4-.8.1-.3 0-.6-.1-.8-.1-.2-1-2.4-1.4-3.3-.4-.9-.7-.7-1-.7h-.8c-.3 0-.8.1-1.2.6s-1.6 1.6-1.6 3.8 1.7 4.4 1.9 4.7c.2.3 3.3 5 8 7 1.1.5 2 .8 2.7 1 1.1.3 2.2.3 3 .2.9-.1 2.8-1.1 3.2-2.2.4-1.1.4-2 .3-2.2-.2-.2-.5-.3-.9-.5z"/>
+            </svg>
+          </a>
+
+          <!-- Telegram -->
+          <a class="sh-btn" aria-label="Compartilhar no Telegram"
+             href="https://t.me/share/url?url=https%3A%2F%2Fcgc30.com%2Fem-breve.html&text=Algo%20extraordin%C3%A1rio%20est%C3%A1%20chegando%20em%202%20de%20agosto%20de%202026."
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+          </a>
+
+          <!-- X / Twitter -->
+          <a class="sh-btn" aria-label="Compartilhar no X"
+             href="https://x.com/intent/tweet?text=Algo%20extraordin%C3%A1rio%20est%C3%A1%20chegando%20em%202%20de%20agosto%20de%202026.&url=https%3A%2F%2Fcgc30.com%2Fem-breve.html"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+
+          <!-- Facebook -->
+          <a class="sh-btn" aria-label="Compartilhar no Facebook"
+             href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcgc30.com%2Fem-breve.html"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+              <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p class="footer-text">&copy; 2026 &nbsp;·&nbsp; Capítulo Grande Campinas n.30 &nbsp;·&nbsp; Ordem DeMolay</p>
+    </footer>
+
+  </div><!-- /.page -->
+
+  <!-- Notification modal -->
+  <div class="modal-overlay" id="notifyModal">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Fechar"
+        onclick="document.getElementById('notifyModal').classList.remove('open')">✕</button>
+      <iframe
+        src="https://9365c647.sibforms.com/serve/MUIFALdLnO_W3EeMTX6MBQLR9JHyGh2kntSMYtXM23oqCaxrDbLR8EPBnIUrryW3ChApWNAx-gwWyWLDiIB4YjCpqMk2C6f6Dd78HoFfKp7tvLJBl6OBFB91dYca9E0mlswhJf9plqO5m96KbdtS4rP_ZmQR1Q3zE9EheVdUXP4jxqF2nXN8tFMkzK92csCevM3G7aH5Nw-vLctsEw=="
+        scrolling="auto"
+        allowfullscreen
+        title="Formulário de notificação CGC30">
+      </iframe>
+    </div>
+  </div>
+
+  <script>
+    /* ══════════════════════════════════════════
+       COUNTDOWN
+    ══════════════════════════════════════════ */
+    const LAUNCH = new Date('2026-08-02T00:00:00-03:00').getTime();
+
+    function pad(n) { return String(Math.max(0, n)).padStart(2, '0'); }
+
+    function setNum(id, val) {
+      const el = document.getElementById(id);
+      if (el.textContent !== val) {
+        el.textContent = val;
+        el.classList.remove('tick');
+        void el.offsetWidth;          // reflow to restart animation
+        el.classList.add('tick');
+      }
+    }
+
+    function tick() {
+      const diff  = Math.max(0, LAUNCH - Date.now());
+      const days  = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const mins  = Math.floor((diff % 3600000)  / 60000);
+      const secs  = Math.floor((diff % 60000)    / 1000);
+      setNum('cd-days',  pad(days));
+      setNum('cd-hours', pad(hours));
+      setNum('cd-mins',  pad(mins));
+      setNum('cd-secs',  pad(secs));
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    /* ══════════════════════════════════════════
+       MODAL — close on backdrop click
+    ══════════════════════════════════════════ */
+    document.getElementById('notifyModal').addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('open');
+    });
+
+    /* ══════════════════════════════════════════
+       BACKGROUND CANVAS — Rotating Compass Rings
+    ══════════════════════════════════════════ */
+    (function () {
+      const cv  = document.getElementById('bg-canvas');
+      const ctx = cv.getContext('2d');
+
+      let W, H, raf;
+      let t = 0;
+
+      // Smooth mouse parallax
+      let mx = 0, my = 0;
+      let px = 0, py = 0;
+
+      document.addEventListener('mousemove', e => {
+        mx = (e.clientX / window.innerWidth  - 0.5) * 2;
+        my = (e.clientY / window.innerHeight - 0.5) * 2;
+      });
+
+      function resize() {
+        W = cv.width  = window.innerWidth;
+        H = cv.height = window.innerHeight;
+      }
+
+      /* Draw a ring with evenly-spaced tick marks */
+      function ring(cx, cy, r, ticks, rot, alpha, lw) {
+        if (r <= 0) return;
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(rot);
+
+        const col = `rgba(196,164,78,${alpha.toFixed(3)})`;
+        ctx.strokeStyle = col;
+        ctx.lineWidth = lw;
+
+        // Circumference
+        ctx.beginPath();
+        ctx.arc(0, 0, r, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Ticks
+        for (let i = 0; i < ticks; i++) {
+          const a     = (i / ticks) * Math.PI * 2;
+          const major = i % Math.max(1, Math.floor(ticks / 4)) === 0;
+          const mid   = !major && i % Math.max(1, Math.floor(ticks / 12)) === 0;
+          const len   = major ? 18 : mid ? 9 : 4;
+          const tw    = major ? lw * 2.2 : lw;
+          const cos   = Math.cos(a), sin = Math.sin(a);
+
+          ctx.beginPath();
+          ctx.lineWidth = tw;
+          ctx.moveTo(cos * r,         sin * r);
+          ctx.lineTo(cos * (r - len), sin * (r - len));
+          ctx.stroke();
+        }
+
+        ctx.restore();
+      }
+
+      /* Draw radial spokes between two rings */
+      function spokes(cx, cy, r1, r2, count, rot, alpha) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(rot);
+        ctx.strokeStyle = `rgba(196,164,78,${alpha.toFixed(3)})`;
+        ctx.lineWidth = 0.4;
+
+        for (let i = 0; i < count; i++) {
+          const a = (i / count) * Math.PI * 2;
+          ctx.beginPath();
+          ctx.moveTo(Math.cos(a) * r1, Math.sin(a) * r1);
+          ctx.lineTo(Math.cos(a) * r2, Math.sin(a) * r2);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        t += 0.00028;
+
+        // Lerp mouse parallax
+        px += (mx - px) * 0.04;
+        py += (my - py) * 0.04;
+
+        const cx   = W / 2 + px * 18;
+        const cy   = H / 2 + py * 12;
+        const base = Math.min(W, H) * 0.36;
+
+        // Outermost decorative rings (very faint)
+        ring(cx, cy, base * 2.6,  72, t * .18,    0.025, 0.4);
+        ring(cx, cy, base * 2.1,  60, -t * .28,   0.035, 0.4);
+
+        // Mid rings
+        ring(cx, cy, base * 1.65, 48, t * .45,    0.05,  0.45);
+        ring(cx, cy, base * 1.3,  36, -t * .6,    0.06,  0.5);
+
+        // Spokes between mid rings
+        spokes(cx, cy, base * 1.3, base * 1.65, 12, t * .35, 0.03);
+
+        // Primary ring (brightest)
+        ring(cx, cy, base,         60, -t,         0.10,  0.65);
+        ring(cx, cy, base * .72,   24, t * 1.4,   0.065, 0.5);
+
+        // Spokes from inner to primary
+        spokes(cx, cy, base * .72, base, 8, -t * .8, 0.04);
+
+        // Inner rings
+        ring(cx, cy, base * .44,   12, -t * 2.2,  0.07,  0.5);
+        ring(cx, cy, base * .20,   8,  t * 3.5,   0.06,  0.45);
+
+        // Center dot
+        ctx.beginPath();
+        ctx.arc(cx, cy, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(196,164,78,0.30)`;
+        ctx.fill();
+
+        // Subtle cardinal cross (very faint)
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(t * .25);
+        ctx.strokeStyle = `rgba(196,164,78,0.03)`;
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i < 4; i++) {
+          const a = (i / 4) * Math.PI * 2;
+          ctx.beginPath();
+          ctx.moveTo(Math.cos(a) * base * .44, Math.sin(a) * base * .44);
+          ctx.lineTo(Math.cos(a) * base * 2.1, Math.sin(a) * base * 2.1);
+          ctx.stroke();
+        }
+        ctx.restore();
+
+        raf = requestAnimationFrame(draw);
+      }
+
+      resize();
+      draw();
+
+      window.addEventListener('resize', () => { resize(); });
+      window.addEventListener('beforeunload', () => cancelAnimationFrame(raf));
+    })();
+  </script>
+
+</body>
+</html>
