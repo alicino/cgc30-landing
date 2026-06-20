@@ -38,10 +38,6 @@ jobs:
             exit 1
           fi
 
-      - name: Remove this workflow
-        run: |
-          rm .github/workflows/launch-cgc30.yml
-
       - name: Commit and push launch
         run: |
           git config user.name "github-actions"
