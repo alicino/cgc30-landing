@@ -5,6 +5,7 @@
 
 # Geral
 index-copy.html
+*.docx
 
 # Node tooling (se usar algum utilitário local)
 Makefile
