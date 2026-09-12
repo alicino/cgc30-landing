@@ -1,45 +1,20 @@
-# cgc30-landing (Cloudflare Pages)
+# cgc30.com — Site Oficial
 
-Site estático do **cgc30.com** publicado via **Cloudflare Pages** integrado ao GitHub (sem Wrangler).
+Site oficial do Capítulo Grande Campinas nº 30 da Ordem DeMolay.
 
-## Repo Structure
-```
-cgc30-landing/
-├─ index.html
-├─ assets/
-│  ├─ brasao_demolay.png
-│  ├─ styles.css
-│  └─ script.js
-├─ .gitignore
-├─ Makefile
-└─ README.md
-```
+- **Domínio**: `cgc30.com` (arquivo `CNAME` na raiz), com Cloudflare como proxy/DNS.
+- **Hospedagem**: GitHub Pages, servindo os arquivos estáticos diretamente da raiz deste repositório (branch `main`).
+- **Origem do conteúdo**: este site é gerado a partir do repositório de desenvolvimento [`cgc30-site`](https://github.com/alicino/cgc30-site) (React + Vite). Os arquivos aqui na raiz (`index.html`, `assets/`, `docs/`, `images/`, etc.) são o **build de produção** desse repositório — não devem ser editados manualmente.
+- **`404.html`**: cópia de `index.html`, usada como fallback de SPA (necessário para as rotas internas do React Router funcionarem em recarregamentos e links diretos no GitHub Pages).
+- **`.nojekyll`**: desativa o processamento Jekyll do GitHub Pages, garantindo que todos os arquivos do build sejam servidos como estão.
 
-## 1) Passos iniciais
-1. Crie um repositório no GitHub e suba estes arquivos.
-2. No painel da Cloudflare > **Pages** > **Create project** > **Connect to Git** > selecione o repo.
-3. Build command: _deixe em branco_ (site estático). Output directory: `/`.
-4. Finalize e aguarde o 1º deploy (URL `https://<projeto>.pages.dev`).
+## Como atualizar o site
 
-## 2) Domínio e DNS
-- Adicione **Custom domain**: `cgc30.com` dentro do projeto Pages (Production custom domain).
-- Na zona DNS da Cloudflare: crie `cgc30.com` como **CNAME** para `<projeto>.pages.dev` (Proxy: ON).
-- Redirecione `www.cgc30.com` → `https://cgc30.com` usando **Redirect Rule** (ou Bulk Redirects).
-- SSL/TLS: **Full (strict)**, **Always use HTTPS: ON**.
+1. Faça as alterações e gere o build no repositório `cgc30-site` (`npm run build`).
+2. Substitua os arquivos na raiz deste repositório pelo novo conteúdo de `dist/client/` (mantendo `CNAME`, `.nojekyll` e a pasta `v1/`).
+3. Copie `index.html` para `404.html`.
+4. Commit e push para `main`.
 
-## 3) Publicação
-- Qualquer `git push` na branch `main` dispara um deploy de **Production**.
-- Branches/PRs criam **Preview Deployments** (com URL própria `.pages.dev`).
+## Pasta `v1/`
 
-## 4) Testes e validações
-- Teste local: `make preview` (abre um servidor local em `http://localhost:8080`).
-- Faça um commit de teste: `make go-live MSG="feat: primeiro deploy"`.
-- Verifique o status e logs no painel do Pages. Valide HTTPS no domínio `cgc30.com`.
-
-## 5) Cache/Performance (opcional)
-- **Cache Rules**: curto para HTML (5–10 min), longo para assets (`/assets/*`).
-- Desativar Rocket Loader para evitar interferência em JS simples.
-
-## 6) Próximos passos
-- Substituir `assets/brasao_demolay.png` por uma versão final, se necessário.
-- Editar `index.html` com o conteúdo definitivo.
+Contém o conteúdo integral do site anterior (landing page de pré-lançamento e contagem regressiva, usada até a migração para o site oficial completo), preservado como arquivo histórico. Não faz parte do site publicado atualmente.
